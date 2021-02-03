@@ -14,9 +14,7 @@ class ProjectList extends Component {
         const projectList = projects ? (
             projects.map(project => {
                 return(
-                    <Link to={'/project/'+project.id}>
                         <ProjectSummary projectDetail={project} key={project.id}/>
-                    </Link>
                 );
             })
         ) : 

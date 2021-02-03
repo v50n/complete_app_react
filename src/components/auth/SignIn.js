@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {signIn} from '../../store/actions/authAction'
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            username: '',
+            email: '',
             password: ''
          };
     }
@@ -19,24 +21,44 @@ class SignIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        
+        let credential = this.state;
+        this.props.signIn(credential);
+       // console.log(this.props.err)
     }
 
     render() {
+        let err = this.props.err;
         return (
             <div className="container">
                 <h1 className="center">Sign In</h1>
                 <div className="card-panel grey lighten-5 z-depth-1">
-                    <form action="">
-                        <input type="email" id="username" placeholder="Email" onChange={this.handleChange} />
+                <div className="red-text center err-auth">
+                            { err ? (err.message): null}
+                </div>
+                    <form onSubmit={this.handleSubmit}>
+
+                        <input type="email" id="email" placeholder="Email" onChange={this.handleChange} />
                         <input type="password" id="password" placeholder="Your password" onChange={this.handleChange} />
                         <button className="btn waves-effect waves-light">Submit</button>
+
                     </form>
                 </div>
-                </div>
+            </div>
 
         );
     }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+    return {
+        err: state.auth.authError
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (credential) => dispatch(signIn(credential))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn);

@@ -23,3 +23,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.err-auth{
+  padding-bottom: 20px;
+  padding-top: 5px;
+}

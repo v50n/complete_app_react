@@ -7,6 +7,25 @@ const initState = {
 }
 
 const projectReducer = (state = initState, action) =>{
+    // eslint-disable-next-line default-case
+    switch (action.type) {
+        case 'CREATE_PROJECT': 
+            console.log("project Reducer: ", action.project);
+            // let newProject = state.projects.push(action.project);
+            // return {
+            //     ...state,
+            //     projects: newProject
+            // }
+            // break;
+            return state;
+        case 'CREATE_PROJECT_ERROR':
+            console.log('create project error: ', action.err);
+            return state;
+        default: 
+            return state; // by default change nothing
+
+    }
+    //console.log(state);
     return state;
 }
 

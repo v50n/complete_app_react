@@ -10,13 +10,13 @@ class ProjectList extends Component {
     
     render() {
         //
-        console.log(this.props.projects)
         let projects = this.props.projects;
-        console.log(projects);
         const projectList = projects ? (
             projects.map(project => {
                 return(
-                    <ProjectSummary projectDetail={project} key={project.id}/>
+                    <Link to={'/project/'+project.id}>
+                        <ProjectSummary projectDetail={project} key={project.id}/>
+                    </Link>
                 );
             })
         ) : 

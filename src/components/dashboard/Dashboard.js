@@ -2,15 +2,19 @@ import React, {Component} from 'react';
 import ProjectList from '../projects/ProjectList';
 import Notifications from './Notifications';
 import { connect } from 'react-redux';
+import { compose } from 'redux'
+import { firestoreConnect } from 'react-redux-firebase'
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
     }
+    
     render() {
-        console.log(this.props.projects);
+        
         return (
+
             <div className="dasboard container">
                 <div className="row">
                     <div className="col s12 m6">
@@ -26,9 +30,15 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+    
     return {
-        projects: state.project.projects // map the props.projects of this component to the state.project of the rootReducer
+        projects: state.firestore.ordered.project // map the props.projects of this component to the state.firestore.ordered.project (the component now is linked with the firestore)
     }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'project'}
+    ]) 
+)(Dashboard);

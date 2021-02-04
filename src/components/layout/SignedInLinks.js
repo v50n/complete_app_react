@@ -12,7 +12,7 @@ class SignedInLinks extends Component {
         return (
             <ul className="right hide-on-med-and-down">
                 <li><NavLink to="/create">New Project</NavLink> </li>
-                <li><a onClick={this.props.signOut}>Log out</a> </li>
+                <li><div className="logOut" onClick={this.props.signOut}>Log out</div> </li>
                 <li><NavLink to="/" className="btn btn-floating pink lighten-1">VS</NavLink> </li>
             </ul>
         );
